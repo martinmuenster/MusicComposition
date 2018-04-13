@@ -6,12 +6,12 @@ sampleTime = 100
 
 def openFiles():
     index = 1;
-    directory = os.getcwd() + "\data\csv"
+    directory = os.getcwd() + "\data\\raw_csv"
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
         if filename.endswith(".csv"):
-            csv = "data/csv/" + file
-            with open("data/csv/" + file) as csvfile:
+            csv = "data/raw_csv/" + file
+            with open("data/raw_csv/" + file) as csvfile:
                 CSVlist(csvfile, index)
         index = index + 1
     print(filename)
@@ -56,12 +56,12 @@ def CSVlist(csvfile, index):
     myNote = list(noteOn)
     for note in notes:
         if int(note[0]) < time:
-            myNote[int(note[1])] = int(note[2])
+            myNote[int(note[1])] = int(int(note[2])>0)
         else:
             notesOn.append(myNote)
             time += sampleTime
             myNote = list(myNote)
-            myNote[int(note[1])] = int(note[2])
+            myNote[int(note[1])] = int(int(note[2])>0)
 
     for i in range(0, 50):
         notesOn.append([0] * 128)
