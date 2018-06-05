@@ -16,6 +16,12 @@ def openFiles():
         index = index + 1
     print(filename)
 
+def processGeneratedCsv(fileName):
+    print("processing " + fileName)
+    if fileName.endswith(".csv"):
+        with open("data/raw_generated/" + fileName) as csvfile:
+            CSVlist(csvfile, fileName)
+
 
 def CSVlist(csvfile, index):
     note_rows = [0]*8
@@ -71,7 +77,7 @@ def CSVlist(csvfile, index):
         # prev_row = row
         # note_rows.append(note_row)
 
-    with open('new' + str(index) + '.csv', 'w', newline='') as csvfile:
+    with open("data/processed_generated/" + str(index), 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         for n in note_rows:
             writer.writerow(n);

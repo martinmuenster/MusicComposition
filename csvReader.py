@@ -16,6 +16,13 @@ def openFiles():
         index = index + 1
     print(filename)
 
+def processCSV(fileName):
+    print("processing " + fileName)
+    if fileName.endswith(".csv"):
+        csv = "data/raw_csv/" + fileName
+        with open("data/raw_csv/" + fileName) as csvfile:
+            CSVlist(csvfile, fileName)
+
 
 def CSVlist(csvfile, index):
     notes_on_c = []
@@ -65,7 +72,7 @@ def CSVlist(csvfile, index):
 
     for i in range(0, 50):
         notesOn.append([0] * 128)
-    with open(str(index) + '.csv', 'w', newline='') as csvfile:
+    with open("data\\processed_csv\\" + str(index) + '.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=' ',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
         for n in notesOn:
